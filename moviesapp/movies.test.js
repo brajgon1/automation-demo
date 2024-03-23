@@ -44,24 +44,12 @@ beforeAll(async () => {
         try {
             await driver.wait(
                 until.elementLocated(
-                    By.xpath(`//*[contains(text(), '${movieTitle}')]`)
+                    By.xpath(`//*[contains(text(), 'The Matrix Deleted!')]`)
                 ), 1000
             );
         } catch (error) {
-            // Handle error if necessary
+            // expect(error.name).not.toBe("TimeoutError");
         }
     });
     })
-        // await driver.sleep(500);
-
-        // try {
-        //     await driver.wait(
-        //         until.elementLocated(
-        //             By.xpath(`//*[contains(text(), '${movieTitle}')]`)
-        //         ), 1000
-        //     );
-
-        //     throw new Error(`Element with text "${movieTitle}" is still present`);
-        //   } catch (error) {
-        //     expect(error.name).toBe("Timeout Error");
-        //   })
+        
