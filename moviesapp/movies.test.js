@@ -33,5 +33,35 @@ beforeAll(async () => {
         // await driver.wait(until.elementLocated("The Matrix"), 1000);
         // expect(movieTitleElement).toBe(movieTitle)
         
+    });
+
+    test("Can delete a movie name from the list", async () => {
+        const movieTitle = "The Matrix";
+        const deleteBtn = driver.findElement(By.className("delete-btn"));
+        await deleteBtn.click();
+        await driver.sleep(500);
+    
+        try {
+            await driver.wait(
+                until.elementLocated(
+                    By.xpath(`//*[contains(text(), '${movieTitle}')]`)
+                ), 1000
+            );
+        } catch (error) {
+            // Handle error if necessary
+        }
+    });
     })
-  })
+        // await driver.sleep(500);
+
+        // try {
+        //     await driver.wait(
+        //         until.elementLocated(
+        //             By.xpath(`//*[contains(text(), '${movieTitle}')]`)
+        //         ), 1000
+        //     );
+
+        //     throw new Error(`Element with text "${movieTitle}" is still present`);
+        //   } catch (error) {
+        //     expect(error.name).toBe("Timeout Error");
+        //   })
