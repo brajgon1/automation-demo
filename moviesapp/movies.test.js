@@ -9,8 +9,12 @@ beforeAll(async () => {
   
   // Quit a driver after each test
   afterEach(async () => {
-    await driver.quit();
+    await driver.sleep(1000);
   });
+
+  afterAll(async () => {
+    await driver.quit();
+  })
 
   describe("moviesapp", () => {
     test("can work the movie app", async () => {
@@ -19,6 +23,15 @@ beforeAll(async () => {
     });
 
     test("Can submit a movie title", async () => {
-        await driver.findElement(By.name("movieTitle")).sendKeys("Matrix", Key.RETURN);
+        const movieTitle = "The Matrix";
+        await driver.findElement(By.name("movieTitle")).sendKeys(movieTitle, Key.RETURN);
+        await driver.wait(until.elementLocated(By.xpath(`//*[contains(text(), 'The Matrix')]`)), 1000)
+
+        // driver.wait(until.elementTextIs("The Matrix", 1000))
+        // await driver.sleep(2000);
+        // const movieTitleElement = global.document.querySelector('label[for="movie-0"]')
+        // await driver.wait(until.elementLocated("The Matrix"), 1000);
+        // expect(movieTitleElement).toBe(movieTitle)
+        
     })
   })
